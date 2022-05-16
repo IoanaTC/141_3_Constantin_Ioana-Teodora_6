@@ -16,7 +16,7 @@ void OnlinePharmacy::AskForPharmacyData() {
     cout<<"Valoarea discountului = "; cin>>get<2>(pharmacydata);
 }
 void OnlinePharmacy::PrintPharmacyData() {
-    cout<<&(*this)<<"datele farmaciei dumneavoastra online sunt urmatoarele:";
+    cout<<"\n"<<this->owner<<", datele farmaciei dumneavoastra online sunt urmatoarele:";
     cout<<"\nURL = "<<get<0>(pharmacydata);
     cout<<"\nNumarul de vizitatori = "<<get<1>(pharmacydata);
     cout<<"\nValoarea discountului = "<<get<2>(pharmacydata);

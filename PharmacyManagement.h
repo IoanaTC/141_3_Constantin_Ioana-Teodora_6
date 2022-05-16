@@ -21,7 +21,7 @@ protected:
 
     static int identification;
 public:
-    PharmacyManagement()=default;
+    PharmacyManagement():index(0){}
     PharmacyManagement(PharmacyManagement &pharmacyManagement)=default;
     ~PharmacyManagement()=default;
 
@@ -89,7 +89,7 @@ template<class T>
 void PharmacyManagement<T>::Visitors() {
     cout<<"\n\nFarmaciile au un total de ";
     int visitors=0;
-    for(int i=0; i<index; i++)
+    for(int i=0; i<chain.size(); i++)
         visitors+=get<1>(chain[i]->GetTuple());
     cout<<visitors<<" vizitatori";
 }
@@ -97,7 +97,7 @@ template<>
 void PharmacyManagement<OnlinePharmacy>::Visitors() {
     cout<<"\n\nFarmaciile online au un total de ";
     int visitors=0;
-    for(int i=0; i<index; i++)
+    for(int i=0; i<chain.size(); i++)
         visitors+=get<1>(chain[i]->GetTuple());
     cout<<visitors<<" vizitatori";
 }

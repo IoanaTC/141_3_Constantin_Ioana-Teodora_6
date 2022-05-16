@@ -4,21 +4,13 @@
 #include <cstdlib>
 #include "PharmacyManagement.h"
 
-bool client, online;
+bool client, online, x;
 int ok;
 
 int PrintAlegere();
 bool Finish();
 int main()
 {
-    //test operator=
-//    Pharmacy pharmacy("null"); pharmacy.AskForPharmacyData();
-//    Pharmacy pharmacy1("null"); pharmacy1.AskForPharmacyData();
-//
-//    pharmacy.PrintPharmacyData();
-//    pharmacy=pharmacy1;
-//    pharmacy.PrintPharmacyData();
-
     system("cls");
     cout << "Buna ziua!\nVa voi ajuta sa manipulati baza dumneavoastra de informatii in legatura cu farmaciile detinute\n";
     do {
@@ -26,8 +18,15 @@ int main()
         PharmacyManagement<Pharmacy> chain;
         PharmacyManagement<OnlinePharmacy> chain_online;
 
-        Owner *owner = new Pharmacy("null");
-        owner->AskForPharmacyData();
+        Pharmacy pharmacy("null"); pharmacy.AskForPharmacyData();
+        Owner *owner=&pharmacy;
+
+        //test operator=
+        cout<<"\nDoriti sa modificati datele? (0)NU\\(1)DA\nRASPUNS = "; cin>>x;
+        if(x){
+            Pharmacy pharmacy1(owner->GetOwner()); pharmacy1.AskForPharmacyData();
+            pharmacy = pharmacy1;
+        }
         chain+=(dynamic_cast<Pharmacy*>(owner));
 
         system("cls");
@@ -43,7 +42,6 @@ int main()
                         chain+=(dynamic_cast<Pharmacy*>(owner));
 
                     }while(Finish());
-                    system("cls");
                     chain.PrintChain();
                     break;
                 }
@@ -57,7 +55,6 @@ int main()
                         chain_online+=(dynamic_cast<OnlinePharmacy*>(owner));
 
                     }while(Finish());
-                    system("cls");
                     chain_online.PrintChain();
                     break;
                 }
